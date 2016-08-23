@@ -1,0 +1,5 @@
+num-executors 1 4
+executor-cores 1 4
+spark.reducer.maxSizeInFlight 48 96
+spark.shuffle.memoryFraction 0.05 0.2
+spark.io.compression.snappy.blockSize 10 32

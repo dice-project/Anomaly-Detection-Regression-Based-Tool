@@ -1,0 +1,7 @@
+Metric=Time
+Budget_constr=Yes
+Budget=32
+Mode=manual
+R2=0.85
+p_value=0.05
+version_to_compare=1
