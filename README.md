@@ -13,11 +13,69 @@ The high-level architecture of the tool is shown on the Figure below:
 ## Installation
 Regression-based Anomaly Detection tool is implemented in Matlab and packaged to be run as a standalone application from the browser or command line (does not require Matlab to be installed). MyAppInstaller_web.exe is an installer of the MATLAB Generated Standalone Application.
 
+### Compile RBADT (for source code distribution).
+
+If you made changes to the source code and want to compile it, Matlab provides interactive and straightforward compiling environment with the following steps:
+
+<ol>
+
+<li> Put all .m files you want to package as a part of an application into the same folder (Matlab compiler app automatically finds dependencies, but if you have two or more files with the same name but with different contents in different folders, Matlab will add the one which is closest on the path to the main file). </li>
+<li> Open the <b>Application Compiler</b>. <br />
+   a) On the toolstrip select the <b>Apps</b> tab. <br />
+   b) Click <b>Application Compiler</b> to open the MATLAB Compiler</b> project window. <br />
+   <img src="http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-16.05.45.png" /> <br />
+   <img src="http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-16.13.21-e1472657140633.png" /> <br />
+<br /></li>
+<li> Specify the main file of the MATLAB application you want to deploy. <br />
+   a) In the <b>Main File</b> section of the toolstrip, click the plus button. <br />
+      <b>Note:</b>   If the Main File section of the toolstrip is collapsed, you can expand it by clicking the down arrow. <br />
+   b) In the file explorer that opens, locate and select the main.m file (or whatever the name you choose for your main file). <br />
+   c) Click <b>Open</b> to select the file and close the file explorer. <br />
+      main.m is added to the list of main files and the plus button will be replaced by a minus button.</li>
+<li> In the <b>Packaging Options</b> section of the toolstrip, verify that the <b>Runtime downloaded from web</b> check box is selected. <br />
+   <b>Note:</b>   If the Packaging Options section of the toolstrip is collapsed, you can expand it by clicking the down arrow. <br />
+   This option creates an application installer that automatically downloads the MATLAB Runtime and installs it along with the deployed MATLAB application. <br /> </li>
+<li> Explore the main body of the <b>MATLAB Compiler</b> project window. <br />
+   The project window is divided into the following areas: <br />
+   
+<ul>
+
+  <li> <b>Application Information</b> — Editable information about the deployed application. This information is used by the generated installer to populate the installed application's metadata. See <a href="http://uk.mathworks.com/help/compiler/customizing-the-installer.html">Customize the Installer</a>.</li>
+  <li> <b>Additional Installer Options</b> — The default installation path for the generated installer. See <a href="http://uk.mathworks.com/help/compiler/customizing-the-installer.html">Customize the Installer</a>.</li>
+  <li> <b>Files required for your application to run</b> — Additional files required by the generated application. These files will be included in the generated application installer. See <a href="http://uk.mathworks.com/help/compiler/adding-required-files-to-the-project.html">Manage Required Files in Compiler Project</a>. If your tool implementation reads/writes information to/from Matlab data files (.mat) they need to be added manually here (by pressing plus button in the bottom right corner of the field). There is no need to include .txt files explicitly to this list.<br />
+  <br />
+  <img src = "http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-16.25.05-e1472658301239.png" /> </li>
+  <li> <b>Files installed with your application</b> — Files that are installed with your application. These files include generated <i>readme.txt</i>, generated executable for the target platform. <br /></li>
+  See <a href="http://uk.mathworks.com/help/compiler/specifying-additional-files-to-be-installed-with-the-application.html">Specify Files to Install with Application</a> </li>
+  <li> <b>Additional Runtime Settings</b> — Platform specific options for controlling the generated executable. See <a href="http://uk.mathworks.com/help/compiler/customizing-the-applications-runtime-behavior.html">Customize Application Runtime Settings</a>.</li>
+
+</ul> </li>
+
+<li> Click <b>Package</b>. <br />
+   The Package window opens while the application is being generated. <br />
+   <img src="http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-16.43.51-e1472659274241.png" /> </li> <br />
+<li> Select the <b>Open output folder when process completes</b> check box. <br />
+   When the deployment process is complete a file explorer opens and displays the generated output. <br />
+   It should contain: <br />
+<ul>
+
+   <li> <i>for_redistribution</i> folder contains the file that installs the application and the MATLAB Runtime. </li>
+   <li> <i>for_testing</i> folder contains all the artifacts created by mcc like binaries and jar, header, and source files for a specific target. Use these files to test the installation. </li>
+   <li> <i>for_redistribution_files_only</i> folder contains the files required for redistribute of the application.
+   Distribute these files to users that have MATLAB or MATLAB Runtime installed on their machines. </li>
+   <li> <i>PackagingLog.txt</i> is a log file generated by the compiler.</li>
+
+</ul> </li>
+<li> Click <b>Close</b> on the Package window. </li>
+
+</ol>
+
+
 ### Install RBADT
 
 To install RBADT on either Windows, Linux or Mac OS platforms please follow the steps outlined below*:
 
-1. Download MyAppInstaller_web.exe, config_main.txt and config_factors.txt from this GitHub repository.
+1. Download MyAppInstaller_web.exe, config_main.txt and config_factors.txt from this GitHub repository (or locate the MyAppInstaller_web executable in the for_redistribution folder created by the MATLAB Compiler if you have compiled the application from your own source code using instructions above).
 2. Double click the installer to run it. <br />
 <img src="http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-12.13.04-e1472642089688.png" />
 3. If you connect to the internet using a proxy server, enter the server's settings. <br />
@@ -66,8 +124,10 @@ After the tool is installed and configuration files are added and modified to th
 
 If you choose to run the RBAD tool in command line, please refer to the following steps:
 
-1. 1. Open a terminal window.
-2. Navigate to the folder into which you installed the application. <br />
+<ol>
+
+<li> Open a terminal window.</li>
+<li> Navigate to the folder into which you installed the application. <br />
    If you accepted the default settings, you can find the folder in one of the following locations: <br />
 <table>
 
@@ -89,8 +149,8 @@ If you choose to run the RBAD tool in command line, please refer to the followin
 </tr>
 
 
-</table>
-3. Run the application using the one of the following commands: <br />
+</table> </li>
+<li> Run the application using the one of the following commands: <br />
 
 <table>
 
@@ -113,6 +173,10 @@ If you choose to run the RBAD tool in command line, please refer to the followin
 
 
 </table>
+
+</li>
+
+<ol>
 
 ## Demo mode
 
