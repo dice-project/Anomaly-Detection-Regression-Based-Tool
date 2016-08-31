@@ -18,7 +18,7 @@ Regression-based Anomaly Detection tool is implemented in Matlab and packaged to
 To install RBADT on either Windows, Linux or Mac OS platforms please follow the steps outlined below*:
 
 1. Download MyAppInstaller_web.exe, config_main.txt and config_factors.txt from this GitHub repository.
-2. Double click the installer to run it.
+2. Double click the installer to run it. <br />
 <img src="http://wp.doc.ic.ac.uk/dice-h2020/wp-content/uploads/sites/75/2016/08/Screen-Shot-2016-08-31-at-12.13.04-e1472642089688.png" />
 3. If you connect to the internet using a proxy server, enter the server's settings. <br />
    a) Click <b>Connection Settings</b>. <br />
