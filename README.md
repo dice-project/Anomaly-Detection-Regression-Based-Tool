@@ -103,7 +103,8 @@ To install RBADT on either Windows, Linux or Mac OS platforms please follow the 
 
 ### Configuration files
 
-Configuration parameters for the tool are supplied via the configuration file <i>config_main.txt</i>, and input data for model training (except for observations, which are obtained from the DICE monitoring platform) via <i>config_factors.txt</i>. These files preferably should be placed into the same directory as an installed application for convenience, but it is not a strict requirement. 
+Configuration parameters for the tool are supplied via the configuration file <i>config_main.txt</i>, and input data for model training (except for observations, which are obtained from the DICE monitoring platform) via <i>config_factors.txt</i>. <br />
+<b>Important!</b> These files should be placed into the same directory as an installed application. 
 
 Configuration file <i>config_main.txt</i> contains the following parameters:
 
